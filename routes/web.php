@@ -17,4 +17,9 @@ return function (App $app) {
             return $view->render($response, "pages/{$template}.twig");
         });
     }
+    $app->get('/test-500', function ($request, $response) {
+        throw new \Exception("Intentional test error");
+    });
 };
+
+
