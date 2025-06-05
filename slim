@@ -1,0 +1,107 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/vendor/autoload.php';
+
+$command = $argv[1] ?? null;
+$name = $argv[2] ?? null;
+
+$routesFile = __DIR__ . '/routes/web.php';
+$templatesDir = __DIR__ . '/templates/pages';
+$partialsDir = __DIR__ . '/templates/partials';
+
+switch ($command) {
+    case 'make:page':
+        if (!$name) exit(" Page name required.\n");
+
+        $routeLine = "    \$app->get('/$name', function (\$request, \$response) {\n"
+                   . "        \$view = \Slim\Views\Twig::fromRequest(\$request);\n"
+                   . "        return \$view->render(\$response, \"pages/$name.twig\");\n"
+                   . "    });\n";
+
+        // Insert route after AUTO-GENERATED comment
+        $contents = file_get_contents($routesFile);
+        if (strpos($contents, "/$name") !== false) {
+            echo "  Route for '$name' already exists.\n";
+            exit;
+        }
+
+        $contents = preg_replace(
+            '/(\/\/  AUTO-GENERATED ROUTES - DO NOT REMOVE THIS LINE\n)/',
+            "$1$routeLine",
+            $contents
+        );
+        file_put_contents($routesFile, $contents);
+
+        // Create template
+        $templatePath = "$templatesDir/$name.twig";
+        if (!file_exists($templatePath)) {
+            file_put_contents($templatePath, "<h1>$name</h1>\n<p>This is the $name page.</p>");
+            echo " Page '$name' created.\n";
+        } else {
+            echo "  Page template '$name.twig' already exists.\n";
+        }
+        break;
+
+    case 'remove:page':
+        if (!$name) exit(" Page name required.\n");
+
+        // Remove .twig file
+        $templatePath = "$templatesDir/$name.twig";
+        if (file_exists($templatePath)) {
+            unlink($templatePath);
+            echo "  Removed template: $name.twig\n";
+        } else {
+            echo "  No template found for '$name'.\n";
+        }
+
+        // Remove route from web.php
+        $contents = file_get_contents($routesFile);
+        $lines = explode("\n", $contents);
+        $newLines = [];
+
+        $skip = false;
+        foreach ($lines as $line) {
+            if (strpos($line, "'/$name'") !== false) {
+                $skip = true;
+            }
+            if (!$skip) $newLines[] = $line;
+            if ($skip && trim($line) === '});') {
+                $skip = false;
+            }
+        }
+        file_put_contents($routesFile, implode("\n", $newLines));
+        echo " Route for '$name' removed.\n";
+        break;
+
+    case 'make:partial':
+        if (!$name) exit(" Partial name required.\n");
+        if (!is_dir($partialsDir)) mkdir($partialsDir, 0777, true);
+
+        $path = "$partialsDir/$name.twig";
+        if (!file_exists($path)) {
+            file_put_contents($path, "<!-- $name partial -->\n");
+            echo " Partial '$name.twig' created in partials/.\n";
+        } else {
+            echo "  Partial '$name.twig' already exists.\n";
+        }
+        break;
+
+    case 'serve':
+        echo " Running on http://localhost:8000\n";
+        passthru('php -S localhost:8000 -t public');
+        break;
+
+    default:
+        echo <<<EOL
+            Slim Site CLI
+            -------------------------
+            Usage:
+            make:page {name}     Create a new route and Twig page
+            remove:page {name}   Delete route and Twig file
+            make:partial {name}  Create a Twig partial in templates/partials
+            serve                Start local dev server (localhost:8000)
+
+            EOL;
+                    break;
+            }
