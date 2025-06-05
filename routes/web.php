@@ -7,12 +7,8 @@ use Slim\Views\Twig;
 return function (App $app) {
     $pages = [
         '/' => 'home',
-        '/about' => 'about',
-        '/contact' => 'contact',
-        '/mission' => 'mission',
-        '/vision' => 'vision',
-        '/team' => 'team',
-        '/partners' => 'partners'
+        '/developer' => 'developer',
+        '/support' => 'support',
     ];
 
     foreach ($pages as $route => $template) {

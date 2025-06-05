@@ -1,0 +1,154 @@
+{% extends "layout.twig" %}
+
+{% block title %}Wilson Wanja - Full-Stack Developer
+{% endblock %}
+
+{% block content %}
+	<div
+		class="container mx-auto px-4 py-12 max-w-3xl">
+		<!-- Hero Section -->
+		<section class="mb-16">
+			<h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">Hello, I'm
+				<span class="text-blue-600 dark:text-blue-400">Wilson Wanja</span>
+			</h1>
+			<p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+				I'm a passionate full-stack developer specializing in scalable web apps, Linux systems, and AI integrations. 
+				            I build tech blogs, hosting panels, deployment systems, and lightweight company websites using
+				<span class="font-mono bg-gray-100 dark:bg-gray-800 px-1 rounded">Slim PHP</span>,
+				<span class="font-mono bg-gray-100 dark:bg-gray-800 px-1 rounded">Laravel</span>,
+				<span class="font-mono bg-gray-100 dark:bg-gray-800 px-1 rounded">Flask</span>, and
+				<span class="font-mono bg-gray-100 dark:bg-gray-800 px-1 rounded">Frappe</span>.
+			</p>
+		</section>
+
+		<!-- What I Do Section -->
+		<section class="mb-16">
+			<h2 class="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-6 pb-2 border-b border-gray-200 dark:border-gray-700">What I Do</h2>
+			<ul class="space-y-4">
+				<li class="flex items-start">
+					<span class="text-blue-500 dark:text-blue-400 mr-3 mt-1">•</span>
+					<span class="text-gray-700 dark:text-gray-300">
+						Build scalable web platforms using PHP (Slim, Laravel) & Python (Flask, Frappe)
+					</span>
+				</li>
+				<li class="flex items-start">
+					<span class="text-blue-500 dark:text-blue-400 mr-3 mt-1">•</span>
+					<span class="text-gray-700 dark:text-gray-300">
+						Automate deployments & infrastructure (Docker, NGINX, AWS)
+					</span>
+				</li>
+				<li class="flex items-start">
+					<span class="text-blue-500 dark:text-blue-400 mr-3 mt-1">•</span>
+					<span class="text-gray-700 dark:text-gray-300">
+						Mobile-side utilities with Termux & Android integrations
+					</span>
+				</li>
+				<li class="flex items-start">
+					<span class="text-blue-500 dark:text-blue-400 mr-3 mt-1">•</span>
+					<span class="text-gray-700 dark:text-gray-300">
+						Run tech channels like
+						<strong class="font-semibold text-gray-900 dark:text-white">dev-daily</strong>
+						&
+						<strong class="font-semibold text-gray-900 dark:text-white">Genius at Linux</strong>
+					</span>
+				</li>
+			</ul>
+		</section>
+
+		<!-- Projects Section - Inline Cards -->
+		<section class="mb-16">
+			<h2 class="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-8 pb-2 border-b border-gray-200 dark:border-gray-700">Featured Projects</h2>
+
+			<div
+				class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+				<!-- Project Card 1 -->
+				<div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100 dark:border-gray-700">
+					<div class="p-6">
+						<div class="flex items-center mb-4">
+							<div class="bg-blue-100 dark:bg-blue-900 p-2 rounded-full mr-2">
+								<svg class="w-4 h-4 text-blue-600 dark:text-blue-300" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+								</svg>
+							</div>
+							<h3 class="text-lg font-semibold text-gray-900 dark:text-white">Musically.4ly.me</h3>
+						</div>
+						<p class="text-gray-600 dark:text-gray-400 mb-4">Regional music content aggregator with AI</p>
+						<a href="https://musically.4ly.me" target="_blank" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline">
+							View project
+							<svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+							</svg>
+						</a>
+					</div>
+				</div>
+
+				<!-- Project Card 2 -->
+				<div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100 dark:border-gray-700">
+					<div class="p-6">
+						<div class="flex items-center mb-4">
+							<div class="bg-green-100 dark:bg-green-900 p-2 rounded-full mr-2">
+								<svg class="w-4 h-4 text-green-600 dark:text-green-300" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+								</svg>
+							</div>
+							<h3 class="text-lg font-semibold text-gray-900 dark:text-white">Cheapest.wiki</h3>
+						</div>
+						<p class="text-gray-600 dark:text-gray-400 mb-4">An up-to-date cheapest seller in the market</p>
+						<a href="https://cheapest.wiki" target="_blank" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline">
+							View project
+							<svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+							</svg>
+						</a>
+					</div>
+				</div>
+
+				<!-- Project Card 3 -->
+				<div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100 dark:border-gray-700">
+					<div class="p-6">
+						<div class="flex items-center mb-4">
+							<div class="bg-purple-100 dark:bg-purple-900 p-2 rounded-full mr-4">
+								<svg class="w-4 h-4 text-purple-600 dark:text-purple-300" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+								</svg>
+							</div>
+							<h3 class="text-lg font-semibold text-gray-900 dark:text-white">4ly.me</h3>
+						</div>
+						<p class="text-gray-600 dark:text-gray-400 mb-4">Smart deployment & URL shortener platform</p>
+						<a href="https://4ly.me" target="_blank" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline">
+							View project
+							<svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+							</svg>
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Contact Section -->
+		<section>
+			<h2 class="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-6 pb-2 border-b border-gray-200 dark:border-gray-700">Let's Connect</h2>
+			<div class="space-y-3">
+				<p class="flex items-center">
+					<svg class="w-5 h-5 mr-3 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+					</svg>
+					<a href="mailto:wilson@4ly.me" class="text-blue-600 dark:text-blue-400 hover:underline">wilson@4ly.me</a>
+				</p>
+				<p class="flex items-center">
+					<svg class="w-5 h-5 mr-3 text-gray-500 dark:text-gray-400" fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.167 6.839 9.49.5.09.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"></path>
+					</svg>
+					<a href="https://github.com/wanjaswilly" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">github.com/wanjaswilly</a>
+				</p>
+				<p class="flex items-center">
+					<svg class="w-5 h-5 mr-3 text-gray-500 dark:text-gray-400" fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+						<path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+					</svg>
+					<a href="https://twitter.com/wanjaswilly" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">@wanjaswilly</a>
+				</p>
+			</div>
+		</section>
+	</div>
+{% endblock %}

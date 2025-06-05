@@ -1,63 +1,136 @@
 {% extends "layout.twig" %}
 
-{% block title %}Wilson Wanja - Full-Stack Developer
-{% endblock %}
+{% block title %}Slim Simple Site Skeleton{% endblock %}
 
 {% block content %}
-	<section>
-		<h1>Hello, I'm Wilson Wanja</h1>
-		<p>
-			I'm a passionate full-stack developer with a focus on scalable web apps,
-			    Linux systems, and AI integrations. I build tech blogs, hosting panels,
-			    deployment systems, and lightweight company websites using Slim PHP, Laravel,
-			    Flask, and Frappe.
-		</p>
-	</section>
+<div class="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <!-- Hero Section -->
+    <section class="text-center mb-16">
+        <div class="inline-flex items-center justify-center mb-6 p-3 bg-blue-100 dark:bg-blue-900 rounded-full">
+            <svg class="w-8 h-8 text-blue-600 dark:text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+        </div>
+        <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-6">Slim Simple Site Skeleton</h1>
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            A lightweight foundation for building modern, performant websites
+        </p>
+    </section>
 
-	<section>
-		<h2>What I Do</h2>
-		<ul>
-			<li>
-				Build scalable web platforms using PHP (Slim, Laravel) & Python (Flask)</li>
-			<li>
-				Automate deployments & infrastructure (Docker, NGINX, AWS)</li>
-			<li>
-				Mobile-side utilities with Termux & Android integrations</li>
-			<li>
-				Run tech channels like
-				<strong>dev-daily</strong>
-				&
-				<strong>Genius at Linux</strong>
-			</li>
-		</ul>
-	</section>
+    <!-- Main Content -->
+    <section class="prose prose-lg dark:prose-invert max-w-none">
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-8 mb-8 border border-gray-100 dark:border-gray-700">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">About This Project</h2>
+            <p>
+                This is a lightweight Slim PHP starter template crafted for building simple, fast, and modern websites with ease. It's designed for use on company profiles, portfolios, and static sites — no authentication, no session handling, just clean pages and minimal setup.
+            </p>
+            
+            <div class="my-6 p-4 bg-blue-50 dark:bg-blue-900/30 border-l-4 border-blue-500 rounded">
+                <p class="text-blue-800 dark:text-blue-200 font-medium">
+                    Perfect for: Company sites, Portfolios, Documentation, Marketing pages
+                </p>
+            </div>
+        </div>
 
-	<section>
-		<h2>Featured Projects</h2>
-		<ul>
-			<li>
-				<strong>Musically.4ly.me</strong>
-				– Regional music content aggregator with AI</li>
-			<li>
-				<strong>Cheapest.wiki</strong>
-				– An upto date cheapest seller in the market
-			</li>
-			<li>
-				<strong>4ly.me</strong>
-				– Smart deployment & URL shortener platform</li>
-		</ul>
-	</section>
+        <!-- Tech Stack -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 border border-gray-100 dark:border-gray-700">
+                <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-4 flex items-center">
+                    <svg class="w-5 h-5 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                    Built With
+                </h3>
+                <ul class="space-y-2">
+                    <li class="flex items-center">
+                        <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                        <span>Slim PHP 4 (Routing)</span>
+                    </li>
+                    <li class="flex items-center">
+                        <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                        <span>Twig (Templating)</span>
+                    </li>
+                    <li class="flex items-center">
+                        <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                        <span>Tailwind CSS (Styling)</span>
+                    </li>
+                    <li class="flex items-center">
+                        <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                        <span>PHP-DI (Dependency Injection)</span>
+                    </li>
+                </ul>
+            </div>
 
-	<section>
-		<h2>Let’s Connect</h2>
-		<p>Email:
-			<a href="mailto:wilson@4ly.me">wilson@4ly.me</a>
-		</p>
-		<p>GitHub:
-			<a href="https://github.com/wanjaswilly" target="_blank">github.com/wanjaswilly</a>
-		</p>
-		<p>Twitter:
-			<a href="https://twitter.com/wanjaswilly" target="_blank">@ywanjaswilly</a>
-		</p>
-	</section>
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 border border-gray-100 dark:border-gray-700">
+                <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-4 flex items-center">
+                    <svg class="w-5 h-5 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+                    </svg>
+                    Features
+                </h3>
+                <ul class="space-y-2">
+                    <li class="flex items-center">
+                        <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                        <span>Simple routing</span>
+                    </li>
+                    <li class="flex items-center">
+                        <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                        <span>Ready-to-use Twig components</span>
+                    </li>
+                    <li class="flex items-center">
+                        <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                        <span>Custom error pages</span>
+                    </li>
+                    <li class="flex items-center">
+                        <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                        <span>Minimal dependencies</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="text-center bg-gray-50 dark:bg-gray-800 rounded-xl p-8 border border-gray-200 dark:border-gray-700">
+            <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Ready to Get Started?</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
+                Clone the repository and start building your next project in minutes.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="https://github.com/wanjaswilly/slim-simple-site-skeleton" target="_blank" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-200">
+                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.167 6.839 9.49.5.09.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"></path>
+                    </svg>
+                    View on GitHub
+                </a>
+                <a href="https://github.com/wanjaswilly/slim-simple-site-skeleton/archive/refs/heads/main.zip" target="_blank" class="inline-flex items-center justify-center px-6 py-3 border border-gray-300 dark:border-gray-600 text-base font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors duration-200">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                    </svg>
+                    Use Template
+                </a>
+            </div>
+        </div>
+
+        <!-- Author Credit -->
+        <div class="mt-12 text-center">
+            <p class="text-gray-600 dark:text-gray-400">
+                Built and open-sourced by <a href="https://github.com/wanjaswilly" class="text-blue-600 dark:text-blue-400 hover:underline font-medium">Wilson Wanja</a>
+            </p>
+            <div class="mt-4 flex justify-center space-x-4">
+                <a href="https://x.com/wanjaswilly" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+                    <span class="sr-only">Twitter</span>
+                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+                    </svg>
+                </a>
+                <a href="https://github.com/wanjaswilly" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+                    <span class="sr-only">GitHub</span>
+                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.167 6.839 9.49.5.09.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+</div>
 {% endblock %}
