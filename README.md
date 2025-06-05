@@ -19,6 +19,27 @@ A lightweight, reusable Slim 4 + Twig boilerplate for static company or portfoli
 -  Custom 404 & 500 error pages
 -  No session/authentication overhead
 -  Fast and easy to clone for new websites
+-  A `slim` cli command for ease in creating or removing pages and serving the site
+
+## 🛠 Slim CLI
+
+Easily scaffold pages, partials, or run the local server using the built-in CLI tool:
+
+```bash
+# Create a new page (e.g., /about)
+php slim make:page about
+
+# Remove a page
+php slim remove:page about
+
+# Create a new Twig partial (e.g., footer.twig in /partials)
+php slim make:partial footer
+
+# Start the development server at http://localhost:8000
+php slim serve
+````
+
+
 
 ---
 
@@ -45,7 +66,9 @@ company-site/
 │   └── web.php            # Route definitions
 ├── bootstrap.php          # App + middleware setup
 ├── composer.json
+├── slim                   # a simple commandline interface
 └── .htaccess              # Optional (Apache friendly URLs)
+
 
 ````
 
@@ -69,7 +92,7 @@ composer install
 ### 3. Start Development Server
 
 ```bash
-php -S localhost:8000 -t public
+php slim serve
 ```
 
 Now open [http://localhost:8000](http://localhost:8000) in your browser.
@@ -78,13 +101,10 @@ Now open [http://localhost:8000](http://localhost:8000) in your browser.
 
 ## Adding New Pages
 
-Add a `.twig` file to `templates/pages/` and define its route in `routes/web.php`:
+To create a page and define its route in `routes/web.php` you call the slim command:
 
 ```php
-$app->get('/team', function ($request, $response, $args) {
-    $view = Twig::fromRequest($request);
-    return $view->render($response, 'pages/team.twig');
-});
+ php slim make:page yourpagename
 ```
 
 ---
