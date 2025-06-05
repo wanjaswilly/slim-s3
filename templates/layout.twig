@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Wilson Wanja{% endblock %}</title>
+</head>
+<body>
+    {% include 'partials/header.twig' %}
+    <main>{% block content %}{% endblock %}</main>
+    {% include 'partials/footer.twig' %}
+</body>
+</html>
