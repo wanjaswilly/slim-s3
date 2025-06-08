@@ -2,9 +2,24 @@
 <div class="max-w-md mx-auto mb-16">
 	<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="wanjaswilly" data-description="Support me on Buy me a coffee!" data-message="Thank you for visiting. You can buy me a coffee if you'd like to support my work!" data-color="#FFDD00" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
 </div>
-<footer class="bg-white text-center text-sm text-gray-600 py-4 border-t mt-10">
+<footer class="bg-white dark:bg-gray-800 dark:text-white text-center text-sm text-gray-600 py-4 border-t mt-10">
 	<p>&copy;
 		{{ "now"|date("Y") }}
 		<a href="https://github.com/wanjaswilly" class="text-blue-500 hover:underline">Wilson Wanja</a>. Open-sourced under
 		<a href="https://opensource.org/licenses/MIT" class="text-blue-500 hover:underline">MIT License</a>.</p>
 </footer>
+{# scripts #}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+	const button = document.getElementById('mobile-menu-button');
+	const menu = document.getElementById('mobile-menu');
+	const iconOpen = document.getElementById('menu-open');
+	const iconClose = document.getElementById('menu-close');
+
+	button.addEventListener('click', () => {
+		menu.classList.toggle('hidden');
+		iconOpen.classList.toggle('hidden');
+		iconClose.classList.toggle('hidden');
+	});
+});
+</script>
