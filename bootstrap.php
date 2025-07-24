@@ -1,5 +1,6 @@
 <?php
 
+use App\Middleware\TrackStatsMiddleware;
 use Slim\Views\Twig;
 use Slim\Factory\AppFactory;
 use Slim\Views\TwigMiddleware;
@@ -8,6 +9,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 use Slim\Exception\HttpInternalServerErrorException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use Twig\TwigFunction;
 
 require __DIR__ . '/vendor/autoload.php';
 
@@ -17,6 +19,9 @@ $app = AppFactory::create();
 // Load configuration files
 $config = require __DIR__ . '/config/app.php';
 $dbConfig = require __DIR__ . '/config/database.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
 // Initialize Eloquent ORM
 $capsule = new Capsule;
@@ -28,11 +33,23 @@ $capsule->setAsGlobal();
 // Boot Eloquent
 $capsule->bootEloquent(); 
 
-$app->add(require __DIR__ . '/app/Middleware/TrackStatsMiddleware.php');
+$app->add(TrackStatsMiddleware::class);
 
 $twig = Twig::create(__DIR__ . '/templates', ['cache' => false]);
 
-$app->add(TwigMiddleware::create($app, $twig));
+$baseAssetUrl = $_ENV['ASSET_BASE'];
+
+$twig->getEnvironment()->addFunction(new TwigFunction('asset', function ($path) use ($baseAssetUrl) {
+    return rtrim($baseAssetUrl, '/') . '/' . ltrim($path, '/');
+}));
+
+foreach ([
+    'APP_URL', 'APP_NAME', 'ASSET_BASE', 'APP_ENVIRONMENT'
+] as $key) {
+    $twig->getEnvironment()->addGlobal($key, $_ENV[$key] ?? '');
+}
+
+$app->add(new \App\Middleware\TrackStatsMiddleware());
 
 
 $errorMiddleware = $app->addErrorMiddleware(true, true, true);
@@ -59,6 +76,7 @@ $errorMiddleware->setDefaultErrorHandler(function (
         'message' => $exception->getMessage()
     ])->withStatus(500);
 });
+
 
 (require __DIR__ . '/routes/web.php')($app);
 

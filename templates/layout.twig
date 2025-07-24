@@ -1,45 +1,63 @@
 <!DOCTYPE html>
-<html lang="en" >
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-		<title>
-			{% block title %}My Company
-			{% endblock %}
-		</title>
+    <title>
+      {% block title %}
+        {{ APP_NAME }}
+      {% endblock %}
+    </title>
 
-		<meta name="description" content="{% block description %}Professional services by Wilson Wanja{% endblock %}">
-		<meta name="author" content="Wilson Wanja">
-		<meta
-		name="keywords" content="Wilson Wanja, Full-stack Developer, Slim PHP, Flask, Linux, Portfolio">
+    <meta name="description"
+      content="{% block description %}
+      {% endblock %}" />
+    <meta name="author" content="Wilson Wanja" />
+    <meta name="keywords" content="Wilson Wanja, Full-stack Developer, Slim PHP, Flask, Linux, Portfolio" />
 
-		<!-- Open Graph (OG) Tags for social media -->
-		<meta property="og:title" content="{% block og_title %}Wilson Wanja - Full-Stack Developer{% endblock %}">
-		<meta property="og:description" content="{% block og_description %}Modern web development and Linux systems expertise.{% endblock %}">
-		<meta property="og:type" content="website">
-		<meta property="og:url" content="{{ app_url | default('https://example.com') }}">
-		<meta
-		property="og:image" content="{{ app_url | default('https://example.com') }}/assets/og-image.jpg">
+    <!-- Open Graph (OG) Tags for social media -->
+    <meta property="og:title"
+      content="{% block og_title %}
+      {% endblock %}" />
+    <meta property="og:description"
+      content="{% block og_description %}
+      {% endblock %}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ app_url|default('https://example.com') }}" />
+    <meta property="og:image" content="{{ app_url|default('https://example.com') }}/assets/og-image.jpg" />
 
-		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary_large_image">
-		<meta name="twitter:title" content="{% block twitter_title %}Wilson Wanja - Dev & Linux{% endblock %}">
-		<meta name="twitter:description" content="{% block twitter_description %}Building modern tools using Slim PHP, Laravel, and Python.{% endblock %}">
-		<meta
-		name="twitter:image" content="{{ app_url | default('https://example.com') }}/assets/twitter-card.jpg">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title"
+      content="{% block twitter_title %}
+      {% endblock %}" />
+    <meta name="twitter:description"
+      content="{% block twitter_description %}
+      {% endblock %}" />
+    <meta name="twitter:image" content="{{ app_url|default('https://example.com') }}/assets/twitter-card.jpg" />
 
-		<!-- Tailwind CSS CDN -->
-		<link rel="stylesheet" href="/public/css/style.css">
+    <!-- Tailwind CSS -->
+    {% if APP_ENVIRONMENT != 'DEV' %}
+      {# Development - use Vite server #}
+      <script type="module" src="http://localhost:8000/@vite/client"></script>
+      <script type="module" src="http://localhost:8000/resources/js/app.js"></script>
+      <link rel="stylesheet" href="http://localhost:8000/resources/css/app.css" />
+    {% else %}
+      {# Production - use built assets #}
+      <link rel="stylesheet" href="{{ asset('/build/assets/app.DmoLx0kq.css') }}" />
+      <script type="module" src="{{ asset('/build/assets/app.[hash].js') }}"></script>
+    {% endif %}
 
-		<!-- Favicon -->
-		<link rel="icon" href="/favicon.ico" type="image/x-icon">
-	</head>
-	<body class="bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100 font-sans">
-		{% include 'partials/header.twig' %}
-		<main>
-			{% block content %}{% endblock %}
-		</main>
-		{% include 'partials/footer.twig' %}
-	</body>
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  </head>
+  <body class="bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100 font-sans">
+    {% include 'partials/header.twig' %}
+    <main>
+      {% block content %}
+      {% endblock %}
+    </main>
+    {% include 'partials/footer.twig' %}
+  </body>
 </html>

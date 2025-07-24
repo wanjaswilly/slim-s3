@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tailwindcss -i ./resources/css/input.css -o ./public/css/style.css --watch",
-    "build": "tailwindcss -i ./resources/css/input.css -o ./public/css/style.css --minify"
+    "dev": "vite",
+    "build": "vite build"
   },
   "repository": {
     "type": "git",
@@ -15,12 +15,16 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/wanjaswilly/slim-simple-site-barebones/issues"
   },
   "homepage": "https://github.com/wanjaswilly/slim-simple-site-barebones#readme",
   "dependencies": {
-    "@tailwindcss/postcss": "^4.1.11",
+    "@tailwindcss/postcss": "^4.1.11"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.11",
     "tailwindcss": "^4.1.11"
   }
 }

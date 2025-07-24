@@ -16,6 +16,9 @@
 				<p class="mt-2 text-center text-lg text-gray-600">
 					Oops! The page you're looking for doesn't exist.
 				</p>
+				<p class="mt-2 text-center text-lg text-gray-600">
+					{% if APP_ENVIRONMENT == "DEV"%} {{ message }} {% endif %}
+				</p>
 			</div>
 
 			<div class="mt-8 bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">

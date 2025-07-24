@@ -87,6 +87,7 @@ cd slim-simple-site-skeleton
 
 ```bash
 composer install
+npm install
 ```
 
 ### 3. Start Development Server

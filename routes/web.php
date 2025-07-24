@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\SiteStat;
 use Slim\App;
 use Slim\Views\Twig;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -27,10 +28,9 @@ return function (App $app) {
     $app->get('/test-500', function () {
         throw new \Exception("Intentional test error");
     });
-    $app->get('/stats', function ($request, $response) {
-    $view = \Slim\Views\Twig::fromRequest($request);
-    $stats = \App\Models\SiteStat::orderBy('visited_at', 'desc')->limit(100)->get();
-    return $view->render($response, 'pages/stats.twig', ['stats' => $stats]);
-});
-
+    // $app->get('/stats', function ($request, $response) {
+    //     $view = \Slim\Views\Twig::fromRequest($request);
+    //     $stats = SiteStat::orderBy('visited_at', 'desc')->limit(100)->get();
+    //     return $view->render($response, 'pages/stats.twig', ['stats' => $stats]);
+    // });
 };
