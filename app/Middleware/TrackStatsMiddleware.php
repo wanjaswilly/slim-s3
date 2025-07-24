@@ -73,4 +73,3 @@ class TrackStatsMiddleware implements MiddlewareInterface
 }
 
 
-return function ($request, $handler) {};

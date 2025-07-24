@@ -34,6 +34,7 @@ $capsule->setAsGlobal();
 $capsule->bootEloquent(); 
 
 $app->add(TrackStatsMiddleware::class);
+// Removed duplicate middleware addition below
 
 $twig = Twig::create(__DIR__ . '/templates', ['cache' => false]);
 
@@ -49,7 +50,7 @@ foreach ([
     $twig->getEnvironment()->addGlobal($key, $_ENV[$key] ?? '');
 }
 
-$app->add(new \App\Middleware\TrackStatsMiddleware());
+// $app->add(new \App\Middleware\TrackStatsMiddleware());
 
 
 $errorMiddleware = $app->addErrorMiddleware(true, true, true);
