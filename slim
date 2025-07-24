@@ -5,36 +5,55 @@ require __DIR__ . '/vendor/autoload.php';
 
 $command = $argv[1] ?? null;
 $name = $argv[2] ?? null;
+$flags = array_slice($argv, 3); // gets everything after command + name
+$makeMigration = in_array('-m', $flags);
 
-$routesFile = __DIR__ . '/routes/web.php';
-$templatesDir = __DIR__ . '/templates/pages';
-$partialsDir = __DIR__ . '/templates/partials';
+// Required directories
+$paths = [
+    'routesFile'     => __DIR__ . '/routes/web.php',
+    'templatesDir'   => __DIR__ . '/templates/pages',
+    'partialsDir'    => __DIR__ . '/templates/partials',
+    'controllerDir'  => __DIR__ . '/app/Controllers',
+    'modelDir'       => __DIR__ . '/app/Models',
+    'migrationsDir'  => __DIR__ . '/database/migrations',
+];
+
+// Ensure folders exist
+foreach (['templatesDir', 'partialsDir', 'controllerDir', 'modelDir', 'migrationsDir'] as $dirKey) {
+    if (!is_dir($paths[$dirKey])) {
+        mkdir($paths[$dirKey], 0777, true);
+    }
+}
+
+// Helper to check required package
+function ensurePackageInstalled($class, $install)
+{
+    if (!class_exists($class)) {
+        echo " Required package missing: $class\n";
+        echo "    → Install with: $install\n";
+        exit(1);
+    }
+}
 
 switch ($command) {
     case 'make:page':
         if (!$name) exit(" Page name required.\n");
 
-        $routeLine = "    \$app->get('/$name', function (\$request, \$response) {\n"
-                   . "        \$view = \Slim\Views\Twig::fromRequest(\$request);\n"
-                   . "        return \$view->render(\$response, \"pages/$name.twig\");\n"
-                   . "    });\n";
+        $routeLine = "\n// Route for '$name'\n"
+            . "\$app->get('/$name', function (\$request, \$response) {\n"
+            . "    \$view = \\Slim\\Views\\Twig::fromRequest(\$request);\n"
+            . "    return \$view->render(\$response, \"pages/$name.twig\");\n"
+            . "});\n";
 
-        // Insert route after AUTO-GENERATED comment
-        $contents = file_get_contents($routesFile);
-        if (strpos($contents, "/$name") !== false) {
+        $contents = file_get_contents($paths['routesFile']);
+        if (strpos($contents, "'/$name'") !== false) {
             echo "  Route for '$name' already exists.\n";
             exit;
         }
 
-        $contents = preg_replace(
-            '/(\/\/  AUTO-GENERATED ROUTES - DO NOT REMOVE THIS LINE\n)/',
-            "$1$routeLine",
-            $contents
-        );
-        file_put_contents($routesFile, $contents);
+        file_put_contents($paths['routesFile'], $routeLine, FILE_APPEND);
 
-        // Create template
-        $templatePath = "$templatesDir/$name.twig";
+        $templatePath = "{$paths['templatesDir']}/$name.twig";
         if (!file_exists($templatePath)) {
             file_put_contents($templatePath, "<h1>$name</h1>\n<p>This is the $name page.</p>");
             echo " Page '$name' created.\n";
@@ -46,8 +65,7 @@ switch ($command) {
     case 'remove:page':
         if (!$name) exit(" Page name required.\n");
 
-        // Remove .twig file
-        $templatePath = "$templatesDir/$name.twig";
+        $templatePath = "{$paths['templatesDir']}/$name.twig";
         if (file_exists($templatePath)) {
             unlink($templatePath);
             echo "  Removed template: $name.twig\n";
@@ -55,30 +73,25 @@ switch ($command) {
             echo "  No template found for '$name'.\n";
         }
 
-        // Remove route from web.php
-        $contents = file_get_contents($routesFile);
+        $contents = file_get_contents($paths['routesFile']);
         $lines = explode("\n", $contents);
         $newLines = [];
-
         $skip = false;
+
         foreach ($lines as $line) {
-            if (strpos($line, "'/$name'") !== false) {
-                $skip = true;
-            }
+            if (strpos($line, "'/$name'") !== false) $skip = true;
             if (!$skip) $newLines[] = $line;
-            if ($skip && trim($line) === '});') {
-                $skip = false;
-            }
+            if ($skip && trim($line) === '});') $skip = false;
         }
-        file_put_contents($routesFile, implode("\n", $newLines));
+
+        file_put_contents($paths['routesFile'], implode("\n", $newLines));
         echo " Route for '$name' removed.\n";
         break;
 
     case 'make:partial':
         if (!$name) exit(" Partial name required.\n");
-        if (!is_dir($partialsDir)) mkdir($partialsDir, 0777, true);
 
-        $path = "$partialsDir/$name.twig";
+        $path = "{$paths['partialsDir']}/$name.twig";
         if (!file_exists($path)) {
             file_put_contents($path, "<!-- $name partial -->\n");
             echo " Partial '$name.twig' created in partials/.\n";
@@ -87,21 +100,253 @@ switch ($command) {
         }
         break;
 
+    case 'make:controller':
+        if (!$name) exit(" Controller name required.\n");
+
+        $className = ucfirst($name) . 'Controller';
+        $path = "{$paths['controllerDir']}/$className.php";
+
+        if (file_exists($path)) {
+            echo "  Controller '$className' already exists.\n";
+        } else {
+            file_put_contents(
+                $path,
+                <<<PHP
+<?php
+
+namespace App\Controllers;
+
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+
+class $className
+{
+    public function index(ServerRequestInterface \$request, ResponseInterface \$response): ResponseInterface
+    {
+        \$response->getBody()->write("Hello from $className");
+        return \$response;
+    }
+}
+PHP
+            );
+            echo " Controller '$className' created.\n";
+        }
+        break;
+
+    case 'make:model':
+        if (!$name) exit(" Model name required.\n");
+
+        ensurePackageInstalled('Illuminate\\Database\\Eloquent\\Model', 'composer require illuminate/database');
+
+        $className = ucfirst($name);
+        $path = "{$paths['modelDir']}/$className.php";
+        $tableName = strtolower($className) . 's'; // crude pluralization
+
+        // Create model
+        if (!file_exists($path)) {
+            file_put_contents(
+                $path,
+                <<<PHP
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class $className extends Model
+{
+    protected \$table = '$tableName';
+    // protected \$fillable = [];
+}
+PHP
+            );
+            echo " Model '$className' created.\n";
+        } else {
+            echo "  Model '$className' already exists.\n";
+        }
+
+        // If -m flag is present, generate matching migration
+        if ($makeMigration) {
+            ensurePackageInstalled('Illuminate\\Database\\Capsule\\Manager', 'composer require illuminate/database');
+
+            $timestamp = date('Y_m_d_His');
+            $migrationFile = "{$timestamp}_create_{$tableName}_table.php";
+            $migrationPath = "{$paths['migrationsDir']}/$migrationFile";
+
+            if (!file_exists($migrationPath)) {
+                file_put_contents(
+                    $migrationPath,
+                    <<<PHP
+<?php
+
+use Illuminate\\Database\\Capsule\\Manager as Capsule;
+
+class Create{$className}sTable
+{
+    public function up()
+    {
+
+        Capsule::schema()->create('$tableName', function (\$table) {
+            \$table->id();
+                        
+            \$table->timestamps();
+        });
+    }
+
+    public function down()
+    {
+        Capsule::schema()->dropIfExists('$tableName');
+    }
+}
+PHP
+                );
+                echo " Migration for '$tableName' created: $migrationFile\n";
+            } else {
+                echo "  Migration already exists for '$tableName'.\n";
+            }
+        }
+
+        break;
+
+    case 'make:migration':
+        if (!$name) exit(" Migration name required.\n");
+
+        ensurePackageInstalled('Illuminate\\Database\\Capsule\\Manager', 'composer require illuminate/database');
+
+        $className = ucfirst($name);
+        $timestamp = date('Y_m_d_His');
+        $filename = "{$timestamp}_{$name}.php";
+        $path = "{$paths['migrationsDir']}/$filename";
+        $tableName = strtolower($className) . 's'; // crude pluralization
+
+        file_put_contents(
+            $path,
+            <<<PHP
+<?php
+
+use Illuminate\\Database\\Capsule\\Manager as Capsule;
+
+class Create{$className}sTable
+{
+    public function up()
+    {
+
+        Capsule::schema()->create('$tableName', function (\$table) {
+            \$table->id();
+                        
+            \$table->timestamps();
+        });
+    }
+
+    public function down()
+    {
+        Capsule::schema()->dropIfExists('$tableName');
+    }
+}
+PHP
+        );
+        echo " Migration '$filename' created.\n";
+        break;
+
     case 'serve':
         echo " Running on http://localhost:8000\n";
         passthru('php -S localhost:8000 -t public');
         break;
 
+    case 'migrate':
+        echo " Running all migrations...\n";
+
+        // Load environment variables
+        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+        $dotenv->safeLoad();
+
+        // Load DB config
+        $dbConfig = require __DIR__ . '/config/database.php';
+
+        // Initialize Eloquent Capsule with explicit paths
+        $capsule = new \Illuminate\Database\Capsule\Manager;
+
+        // For SQLite connections, ensure database file exists
+        if ($dbConfig['default'] === 'sqlite') {
+            $databasePath = __DIR__ . "/database/database.sqlite";
+            if (!file_exists($databasePath)) {
+                touch($databasePath);
+                chmod($databasePath, 0755);
+            }
+        }
+
+        $capsule->addConnection($dbConfig['connections'][$dbConfig['default']]);
+        $capsule->setAsGlobal();
+        $capsule->bootEloquent();
+
+        // Get all migration files
+        $migrations = glob(__DIR__ . '/database/migrations/*.php');
+        if (!$migrations) {
+            echo " No migration files found.\n";
+            break;
+        }
+
+        // Sort migrations by filename
+        sort($migrations);
+
+        foreach ($migrations as $file) {
+            $filename = basename($file, '.php');
+            echo " - $filename\n";
+
+            // Convert filename to class name
+            $className = str_replace(
+                ' ',
+                '',
+                ucwords(
+                    str_replace(
+                        '_',
+                        ' ',
+                        substr($filename, 18) // Remove timestamp
+                    )
+                )
+            );
+
+            require_once $file;
+
+            if (!class_exists($className)) {
+                echo "   >> Skipped: Class $className not found in file $filename\n";
+                continue;
+            }
+
+            try {
+                $migration = new $className();
+                $migration->up();
+                echo "   >> Migrated: $className\n";
+            } catch (\Throwable $e) {
+                $message = $e->getMessage();
+                if (
+                    str_contains($message, 'already exists') ||
+                    str_contains($message, 'SQLSTATE[42S01]')
+                ) {
+                    echo "   >> Skipped: Table already exists\n";
+                } else {
+                    echo "   ** Error: {$e->getMessage()}\n";
+                    echo "      File: {$e->getFile()}:{$e->getLine()}\n";
+                }
+            }
+        }
+
+        echo " Migrations complete.\n";
+        break;
+
     default:
         echo <<<EOL
-            Slim Site CLI
-            -------------------------
-            Usage:
-            make:page {name}     Create a new route and Twig page
-            remove:page {name}   Delete route and Twig file
-            make:partial {name}  Create a Twig partial in templates/partials
-            serve                Start local dev server (localhost:8000)
+Slim Site CLI
+-------------------------
+Usage:
+  make:page {name}       Create a new route and Twig page
+  remove:page {name}     Delete route and Twig file
+  make:partial {name}    Create a Twig partial in templates/partials
+  make:controller {name} Create a controller class in app/Controllers
+  make:model {name}      Create a model class in app/Models
+  make:migration {name}  Create a migration file in database/migrations
+  serve                  Start local dev server (localhost:8000)
 
-            EOL;
-                    break;
-            }
+EOL;
+        break;
+}

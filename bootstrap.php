@@ -4,13 +4,32 @@ use Slim\Views\Twig;
 use Slim\Factory\AppFactory;
 use Slim\Views\TwigMiddleware;
 use Slim\Exception\HttpNotFoundException;
+use Illuminate\Database\Capsule\Manager as Capsule;
 use Slim\Exception\HttpInternalServerErrorException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 require __DIR__ . '/vendor/autoload.php';
 
+session_start();
+
 $app = AppFactory::create();
+// Load configuration files
+$config = require __DIR__ . '/config/app.php';
+$dbConfig = require __DIR__ . '/config/database.php';
+
+// Initialize Eloquent ORM
+$capsule = new Capsule;
+$capsule->addConnection($dbConfig['connections'][$dbConfig['default']]);
+
+// Make Eloquent available globally (optional)
+$capsule->setAsGlobal();
+
+// Boot Eloquent
+$capsule->bootEloquent(); 
+
+$app->add(require __DIR__ . '/app/Middleware/TrackStatsMiddleware.php');
+
 $twig = Twig::create(__DIR__ . '/templates', ['cache' => false]);
 
 $app->add(TwigMiddleware::create($app, $twig));

@@ -1,0 +1,26 @@
+{
+  "name": "simple-site-barebones",
+  "version": "1.0.0",
+  "description": "A lightweight, reusable Slim 4 + Twig boilerplate for static company or portfolio websites (4–7 pages). Ideal for fast deployment of simple informational sites like:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tailwindcss -i ./resources/css/input.css -o ./public/css/style.css --watch",
+    "build": "tailwindcss -i ./resources/css/input.css -o ./public/css/style.css --minify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wanjaswilly/slim-simple-site-barebones.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wanjaswilly/slim-simple-site-barebones/issues"
+  },
+  "homepage": "https://github.com/wanjaswilly/slim-simple-site-barebones#readme",
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.1.11",
+    "tailwindcss": "^4.1.11"
+  }
+}
