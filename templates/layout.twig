@@ -45,8 +45,8 @@
       <link rel="stylesheet" href="http://localhost:8000/resources/css/app.css" />
     {% else %}
       {# Production - use built assets #}
-      <link rel="stylesheet" href="{{ asset('/build/assets/app.DmoLx0kq.css') }}" />
-      <script type="module" src="{{ asset('/build/assets/app.[hash].js') }}"></script>
+      <link rel="stylesheet" href="{{ asset('/build/assets/app.DVhTOnAi.css') }}" />
+      <script type="module" src="{{ asset('/build/assets/app.{{ ASSET_HASH }}.js') }}"></script>
     {% endif %}
 
     <!-- Favicon -->
