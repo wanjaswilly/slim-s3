@@ -28,20 +28,10 @@ return function (App $app) {
     $app->get('/test-500', function () {
         throw new \Exception("Intentional test error");
     });
-    
+
     $app->get('/stats', function ($request, $response) {
         $view = \Slim\Views\Twig::fromRequest($request);
         $stats = SiteStat::orderBy('visited_at', 'desc')->limit(100)->get();
         return $view->render($response, 'pages/stats.twig', ['stats' => $stats]);
     });
-
-    // $app->get('/stats', function (Request $request, Response $response) {
-    //     // if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
-    //     //     return $response->withStatus(403)->write('Access Denied');
-    //     // }
-
-    //     $stats = SiteStat::orderBy('visited_at', 'desc')->limit(100)->get();
-    //     $view = Twig::fromRequest($request);
-    //     return $view->render($response, 'pages/stats.twig', ['stats' => $stats]);
-    // });
 };
