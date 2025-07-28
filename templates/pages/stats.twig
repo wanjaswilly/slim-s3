@@ -1,0 +1,464 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+<section class="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+    <!-- Header Section -->
+    <div class="mb-10 text-center">
+        <h1 class="text-4xl font-bold mb-4 text-gray-800 dark:text-white">📊 Site Analytics Dashboard</h1>
+        <p class="text-lg text-gray-600 dark:text-gray-300">Comprehensive visitor tracking and engagement metrics</p>
+        <div class="w-60 mx-auto mt-6">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-full h-auto text-indigo-500">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+        <div class="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Total Visits</p>
+                    <p class="text-3xl font-bold text-indigo-600 dark:text-indigo-400" id="totalVisits">0</p>
+                </div>
+                <div class="p-3 rounded-full bg-indigo-100 dark:bg-indigo-900/30">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg>
+                </div>
+            </div>
+            <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">All time visits</p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Unique Visitors</p>
+                    <p class="text-3xl font-bold text-green-600 dark:text-green-400" id="uniqueIps">0</p>
+                </div>
+                <div class="p-3 rounded-full bg-green-100 dark:bg-green-900/30">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                </div>
+            </div>
+            <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">Distinct IP addresses</p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Countries</p>
+                    <p class="text-3xl font-bold text-rose-600 dark:text-rose-400" id="countryCount">0</p>
+                </div>
+                <div class="p-3 rounded-full bg-rose-100 dark:bg-rose-900/30">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-rose-600 dark:text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+            </div>
+            <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">Visitor locations</p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Avg. Duration</p>
+                    <p class="text-3xl font-bold text-amber-600 dark:text-amber-400" id="avgDuration">0s</p>
+                </div>
+                <div class="p-3 rounded-full bg-amber-100 dark:bg-amber-900/30">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-600 dark:text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+            </div>
+            <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">Per visit</p>
+        </div>
+    </div>
+
+    <!-- Filters and Controls -->
+    <div class="mb-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </div>
+            <input
+                type="text"
+                id="searchInput"
+                class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                placeholder="Search by IP, URL, browser..."
+            />
+        </div>
+
+        <div class="flex gap-2">
+            <select id="dateFilter" class="flex-1 border border-gray-300 rounded-lg px-3 py-2 bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                <option value="all">All Time</option>
+                <option value="today">Today</option>
+                <option value="week">This Week</option>
+                <option value="month">This Month</option>
+            </select>
+            
+            <select id="deviceFilter" class="flex-1 border border-gray-300 rounded-lg px-3 py-2 bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                <option value="all">All Devices</option>
+                <option value="desktop">Desktop</option>
+                <option value="mobile">Mobile</option>
+                <option value="tablet">Tablet</option>
+            </select>
+        </div>
+
+        <div class="flex gap-2 justify-end">
+            <button onclick="exportTable()" class="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                Export CSV
+            </button>
+            <button onclick="refreshData()" class="flex items-center gap-2 bg-white dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-white px-4 py-2 rounded-lg transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                Refresh
+            </button>
+        </div>
+    </div>
+
+    <!-- Data Table -->
+    <div class="overflow-x-auto rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
+        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+            <thead class="bg-gray-50 dark:bg-gray-800">
+                <tr>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer" onclick="sortTable(0)">
+                        <div class="flex items-center gap-1">
+                            Date/Time
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+                            </svg>
+                        </div>
+                    </th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">URL</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">IP Address</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Device</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Platform</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Browser</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Country</th>
+                </tr>
+            </thead>
+            <tbody id="statsTable" class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                {% for stat in stats %}
+                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-mono text-gray-900 dark:text-white">{{ stat.visited_at|date('Y-m-d H:i:s') }}</td>
+                        <td class="px-6 py-4 text-sm text-gray-900 dark:text-white max-w-xs truncate" title="{{ stat.url }}">{{ stat.url }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-mono text-gray-900 dark:text-white">{{ stat.ip }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                            <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full 
+                                {% if stat.device == 'Mobile' %}bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200
+                                {% elseif stat.device == 'Desktop' %}bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200
+                                {% elseif stat.device == 'Tablet' %}bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200
+                                {% else %}bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200{% endif %}">
+                                {{ stat.device }}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{{ stat.platform }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{{ stat.browser }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                            {% if stat.country %}
+                                <div class="flex items-center gap-2">
+                                    <span class="fi fi-{{ stat.country_code|lower }}"></span>
+                                    {{ stat.country }}
+                                </div>
+                            {% else %}
+                                Unknown
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="7" class="px-6 py-4 text-center text-sm text-gray-500 dark:text-gray-400">
+                            No analytics data available. Tracking will begin when you receive your first visitor.
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="mt-6 flex items-center justify-between">
+        <div class="text-sm text-gray-500 dark:text-gray-400">
+            Showing <span id="startItem">1</span> to <span id="endItem">10</span> of <span id="totalItems">{{ stats|length }}</span> entries
+        </div>
+        <div class="flex gap-2">
+            <button onclick="prevPage()" class="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50" disabled id="prevBtn">
+                Previous
+            </button>
+            <button onclick="nextPage()" class="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50" {% if stats|length <= 10 %}disabled{% endif %} id="nextBtn">
+                Next
+            </button>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Initialize summary stats
+        updateSummaryStats();
+
+        // Initialize search functionality
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', filterTable);
+
+        // Initialize filter dropdowns
+        document.getElementById('dateFilter').addEventListener('change', filterTable);
+        document.getElementById('deviceFilter').addEventListener('change', filterTable);
+
+        // Initialize pagination
+        updatePagination();
+    });
+
+    // Summary statistics calculation
+    function updateSummaryStats() {
+        try {
+            const stats = {{ stats|json_encode|raw }};
+            const totalVisits = stats.length;
+            const uniqueIps = new Set(stats.map(stat => stat.ip)).size;
+            const countries = new Set(stats.filter(stat => stat.country).map(stat => stat.country)).size;
+            
+            // Calculate average duration if data exists
+            let avgDuration = 0;
+            if (stats.length > 0 && stats[0].duration) {
+                const totalDuration = stats.reduce((sum, stat) => sum + (parseInt(stat.duration) || 0), 0);
+                avgDuration = Math.round(totalDuration / stats.length);
+            }
+
+            document.getElementById('totalVisits').textContent = totalVisits.toLocaleString();
+            document.getElementById('uniqueIps').textContent = uniqueIps.toLocaleString();
+            document.getElementById('countryCount').textContent = countries.toLocaleString();
+            document.getElementById('avgDuration').textContent = avgDuration > 0 ? 
+                `${avgDuration}s` : 'N/A';
+        } catch (error) {
+            console.error('Error calculating summary stats:', error);
+        }
+    }
+
+    // Table filtering
+    function filterTable() {
+        try {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const dateFilter = document.getElementById('dateFilter').value;
+            const deviceFilter = document.getElementById('deviceFilter').value;
+            
+            const now = new Date();
+            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            const weekAgo = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 7);
+            const monthAgo = new Date(now.getFullYear(), now.getMonth() - 1, now.getDate());
+
+            const rows = document.querySelectorAll('#statsTable tr');
+            let visibleCount = 0;
+
+            rows.forEach(row => {
+                if (row.cells.length < 7) return; // Skip empty rows
+
+                const dateText = row.cells[0].textContent;
+                const visitDate = new Date(dateText);
+                const url = row.cells[1].textContent.toLowerCase();
+                const ip = row.cells[2].textContent.toLowerCase();
+                const device = row.cells[3].textContent.toLowerCase();
+                const platform = row.cells[4].textContent.toLowerCase();
+                const browser = row.cells[5].textContent.toLowerCase();
+                const country = row.cells[6].textContent.toLowerCase();
+
+                // Date filter
+                let dateMatch = true;
+                if (dateFilter === 'today' && visitDate < today) {
+                    dateMatch = false;
+                } else if (dateFilter === 'week' && visitDate < weekAgo) {
+                    dateMatch = false;
+                } else if (dateFilter === 'month' && visitDate < monthAgo) {
+                    dateMatch = false;
+                }
+
+                // Device filter
+                let deviceMatch = true;
+                if (deviceFilter !== 'all') {
+                    deviceMatch = device.includes(deviceFilter);
+                }
+
+                // Search query
+                let searchMatch = !query || 
+                    url.includes(query) || 
+                    ip.includes(query) || 
+                    device.includes(query) || 
+                    platform.includes(query) || 
+                    browser.includes(query) || 
+                    country.includes(query);
+
+                // Show/hide row based on filters
+                const shouldShow = dateMatch && deviceMatch && searchMatch;
+                row.style.display = shouldShow ? '' : 'none';
+                
+                if (shouldShow) visibleCount++;
+            });
+
+            // Update pagination with filtered results
+            updatePagination();
+        } catch (error) {
+            console.error('Error filtering table:', error);
+        }
+    }
+
+    // Table sorting
+    let sortDirection = 1;
+    let lastSortedColumn = -1;
+
+    function sortTable(columnIndex) {
+        try {
+            const table = document.querySelector('#statsTable');
+            const rows = Array.from(table.querySelectorAll('tr'));
+            
+            if (columnIndex === lastSortedColumn) {
+                sortDirection *= -1; // Toggle sort direction
+            } else {
+                sortDirection = 1; // Default to ascending for new column
+                lastSortedColumn = columnIndex;
+            }
+
+            rows.sort((a, b) => {
+                const aValue = a.cells[columnIndex]?.textContent || '';
+                const bValue = b.cells[columnIndex]?.textContent || '';
+                
+                // Special handling for dates
+                if (columnIndex === 0) {
+                    return (new Date(aValue) - new Date(bValue)) * sortDirection;
+                }
+                
+                // Numeric comparison if both values are numbers
+                if (!isNaN(aValue) && !isNaN(bValue)) {
+                    return (parseFloat(aValue) - parseFloat(bValue)) * sortDirection;
+                }
+                
+                // Default string comparison
+                return aValue.localeCompare(bValue) * sortDirection;
+            });
+
+            // Rebuild table with sorted rows
+            rows.forEach(row => table.appendChild(row));
+
+            // Reapply filtering and pagination after sorting
+            filterTable();
+        } catch (error) {
+            console.error('Error sorting table:', error);
+        }
+    }
+
+    // Pagination
+    let currentPage = 1;
+    const itemsPerPage = 10;
+
+    function updatePagination() {
+        try {
+            const rows = Array.from(document.querySelectorAll('#statsTable tr')).filter(row => row.style.display !== 'none');
+            const totalItems = rows.length;
+            const totalPages = Math.ceil(totalItems / itemsPerPage);
+            
+            // Update item counts
+            const startItem = (currentPage - 1) * itemsPerPage + 1;
+            const endItem = Math.min(currentPage * itemsPerPage, totalItems);
+            
+            document.getElementById('startItem').textContent = startItem;
+            document.getElementById('endItem').textContent = endItem;
+            document.getElementById('totalItems').textContent = totalItems;
+            
+            // Update button states
+            document.getElementById('prevBtn').disabled = currentPage === 1;
+            document.getElementById('nextBtn').disabled = currentPage === totalPages || totalPages === 0;
+            
+            // Show/hide rows based on pagination
+            rows.forEach((row, index) => {
+                if (index >= startItem - 1 && index < endItem) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        } catch (error) {
+            console.error('Error updating pagination:', error);
+        }
+    }
+
+    function nextPage() {
+        const rows = Array.from(document.querySelectorAll('#statsTable tr')).filter(row => row.style.display !== 'none');
+        const totalPages = Math.ceil(rows.length / itemsPerPage);
+        
+        if (currentPage < totalPages) {
+            currentPage++;
+            updatePagination();
+        }
+    }
+
+    function prevPage() {
+        if (currentPage > 1) {
+            currentPage--;
+            updatePagination();
+        }
+    }
+
+    // Export to CSV
+    function exportTable() {
+        try {
+            const table = document.querySelector("table");
+            const rows = Array.from(table.querySelectorAll("tr"));
+            
+            // Filter out header and empty rows
+            const dataRows = rows.filter(row => 
+                row.cells.length > 0 && 
+                row.style.display !== 'none' && 
+                !row.classList.contains('hidden')
+            );
+            
+            // Build CSV content
+            const csvContent = dataRows.map(row => 
+                Array.from(row.cells).map(cell => 
+                    `"${cell.textContent.replace(/"/g, '""')}"`
+                ).join(",")
+            ).join("\n");
+
+            // Create download link
+            const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.setAttribute("href", url);
+            link.setAttribute("download", `site_analytics_${new Date().toISOString().slice(0,10)}.csv`);
+            link.style.visibility = "hidden";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        } catch (error) {
+            console.error('Error exporting table:', error);
+            alert('Error exporting data. Please try again.');
+        }
+    }
+
+    // Refresh data (placeholder - would need backend integration)
+    function refreshData() {
+        // In a real implementation, this would fetch fresh data from the server
+        alert('Data refresh would be implemented with a backend API call in a production environment.');
+        // location.reload(); // Simple reload for demo purposes
+    }
+</script>
+
+<!-- Country flags CSS (from https://flagicons.lipis.dev/) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css">
+
+<!-- Dark mode support -->
+<script>
+    // Check for dark mode preference
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark');
+    }
+</script>
+{% endblock %}
