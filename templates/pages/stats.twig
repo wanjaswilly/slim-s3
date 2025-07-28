@@ -6,76 +6,90 @@
     <div class="mb-10 text-center">
         <h1 class="text-4xl font-bold mb-4 text-gray-800 dark:text-white">📊 Site Analytics Dashboard</h1>
         <p class="text-lg text-gray-600 dark:text-gray-300">Comprehensive visitor tracking and engagement metrics</p>
-        <div class="w-60 mx-auto mt-6">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-full h-auto text-indigo-500">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+        <div class="w-32 h-32 mx-auto mt-6 flex items-center justify-center bg-indigo-50 rounded-xl p-4">
+            <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                stroke-width="1.5" 
+                class="w-16 h-16 text-indigo-600"
+            >
+                <path 
+                    stroke-linecap="round" 
+                    stroke-linejoin="round" 
+                    d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" 
+                />
             </svg>
         </div>
+        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+            Track your visitors, analyze engagement, and optimize your content strategy.
+        </p>
     </div>
 
-    <!-- Summary Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
-        <div class="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">
-            <div class="flex items-center justify-between">
-                <div>
-                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Total Visits</p>
-                    <p class="text-3xl font-bold text-indigo-600 dark:text-indigo-400" id="totalVisits">0</p>
-                </div>
-                <div class="p-3 rounded-full bg-indigo-100 dark:bg-indigo-900/30">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+   <section aria-label="Site analytics summary cards" class="mb-6">
+    <ul class="inline-flex flex-wrap items-stretch gap-4 list-none p-0 m-0">
+        <!-- Total Visits -->
+        <li class="inline-flex bg-white dark:bg-gray-800 shadow rounded-lg p-4" aria-label="Total Visits">
+            <div class="flex items-center gap-4">
+                <div class="p-2 rounded-full bg-indigo-100 dark:bg-indigo-900/30">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                     </svg>
                 </div>
-            </div>
-            <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">All time visits</p>
-        </div>
-
-        <div class="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">
-            <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Unique Visitors</p>
-                    <p class="text-3xl font-bold text-green-600 dark:text-green-400" id="uniqueIps">0</p>
+                    <p class="text-xs font-medium text-gray-500 dark:text-gray-400">Visits</p>
+                    <p class="text-xl font-bold text-indigo-600 dark:text-indigo-400" id="totalVisits">0</p>
                 </div>
-                <div class="p-3 rounded-full bg-green-100 dark:bg-green-900/30">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            </div>
+        </li>
+
+        <!-- Unique Visitors -->
+        <li class="inline-flex bg-white dark:bg-gray-800 shadow rounded-lg p-4" aria-label="Unique Visitors">
+            <div class="flex items-center gap-4">
+                <div class="p-2 rounded-full bg-green-100 dark:bg-green-900/30">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                     </svg>
                 </div>
-            </div>
-            <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">Distinct IP addresses</p>
-        </div>
-
-        <div class="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">
-            <div class="flex items-center justify-between">
-                <div>
-                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Countries</p>
-                    <p class="text-3xl font-bold text-rose-600 dark:text-rose-400" id="countryCount">0</p>
+                <p class="text-xs font-medium text-gray-500 dark:text-gray-400">Unique Visitors</p>
+                <p class="text-xl font-bold text-green-600 dark:text-green-400" id="uniqueIps">0</p>
                 </div>
-                <div class="p-3 rounded-full bg-rose-100 dark:bg-rose-900/30">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-rose-600 dark:text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            </div>
+        </li>
+
+        <!-- Countries -->
+        <li class="inline-flex bg-white dark:bg-gray-800 shadow rounded-lg p-4" aria-label="Countries">
+            <div class="flex items-center gap-4">
+                <div class="p-2 rounded-full bg-rose-100 dark:bg-rose-900/30">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-rose-600 dark:text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                 </div>
-            </div>
-            <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">Visitor locations</p>
-        </div>
-
-        <div class="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">
-            <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Avg. Duration</p>
-                    <p class="text-3xl font-bold text-amber-600 dark:text-amber-400" id="avgDuration">0s</p>
+                    <p class="text-xs font-medium text-gray-500 dark:text-gray-400">Countries</p>
+                    <p class="text-xl font-bold text-rose-600 dark:text-rose-400" id="countryCount">0</p>
                 </div>
-                <div class="p-3 rounded-full bg-amber-100 dark:bg-amber-900/30">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-600 dark:text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            </div>
+        </li>
+
+        <!-- Avg. Duration -->
+        <li class="inline-flex bg-white dark:bg-gray-800 shadow rounded-lg p-4" aria-label="Average Duration">
+            <div class="flex items-center gap-4">
+                <div class="p-2 rounded-full bg-amber-100 dark:bg-amber-900/30">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-600 dark:text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                 </div>
+                <div>
+                    <p class="text-xs font-medium text-gray-500 dark:text-gray-400">Avg. Duration</p>
+                    <p class="text-xl font-bold text-amber-600 dark:text-amber-400" id="avgDuration">0s</p>
+                </div>
             </div>
-            <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">Per visit</p>
-        </div>
-    </div>
+        </li>
+    </ul>
+</section>
 
     <!-- Filters and Controls -->
     <div class="mb-6 grid grid-cols-1 md:grid-cols-3 gap-4">
