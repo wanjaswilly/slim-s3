@@ -46,7 +46,7 @@ $app->add(TwigMiddleware::create($app, $twig));
 $baseAssetUrl = $_ENV['ASSET_BASE'];
 
 $twig->getEnvironment()->addFunction(new TwigFunction('asset', function ($path) use ($baseAssetUrl) {
-    return'/' . ltrim($path, '/');
+    return '/' . ltrim($path, '/');
 }));
 
 foreach ([
