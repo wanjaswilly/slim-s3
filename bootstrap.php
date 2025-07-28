@@ -1,6 +1,7 @@
 <?php
 
 use App\Middleware\TrackStatsMiddleware;
+use App\Models\SiteStat;
 use Slim\Views\Twig;
 use Slim\Factory\AppFactory;
 use Slim\Views\TwigMiddleware;
@@ -33,15 +34,19 @@ $capsule->setAsGlobal();
 // Boot Eloquent
 $capsule->bootEloquent(); 
 
-$app->add(TrackStatsMiddleware::class);
-// Removed duplicate middleware addition below
+/*
+ * Stats tracking moved to middleware for proper $request context.
+ * See App\Middleware\TrackStatsMiddleware.
+ */
 
 $twig = Twig::create(__DIR__ . '/templates', ['cache' => false]);
+$app->add(TwigMiddleware::create($app, $twig));
+
 
 $baseAssetUrl = $_ENV['ASSET_BASE'];
 
 $twig->getEnvironment()->addFunction(new TwigFunction('asset', function ($path) use ($baseAssetUrl) {
-    return rtrim($baseAssetUrl, '/') . '/' . ltrim($path, '/');
+    return'/' . ltrim($path, '/');
 }));
 
 foreach ([
@@ -50,7 +55,7 @@ foreach ([
     $twig->getEnvironment()->addGlobal($key, $_ENV[$key] ?? '');
 }
 
-// $app->add(new \App\Middleware\TrackStatsMiddleware());
+$app->add(new \App\Middleware\TrackStatsMiddleware());
 
 
 $errorMiddleware = $app->addErrorMiddleware(true, true, true);
@@ -74,7 +79,8 @@ $errorMiddleware->setDefaultErrorHandler(function (
     $response = new \Slim\Psr7\Response();
 
     return $twig->render($response, 'errors/500.twig', [
-        'message' => $exception->getMessage()
+        'message' => $exception->getMessage(),
+        // 'message' => $exception
     ])->withStatus(500);
 });
 
