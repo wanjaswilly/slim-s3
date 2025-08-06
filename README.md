@@ -1,6 +1,6 @@
 # Slim Simple Site Skeleton
 
-A lightweight, reusable Slim 4 + Twig boilerplate for static company or portfolio websites (4–7 pages). Ideal for fast deployment of simple informational sites like:
+A lightweight, reusable Slim 4 + Twig boilerplate for static company or portfolio websites (4–7 pages). Ideal for fast deployment of simple informational pages like:
 
 - Company Homepage
 - About Us
@@ -15,31 +15,49 @@ A lightweight, reusable Slim 4 + Twig boilerplate for static company or portfoli
 
 -  Slim 4 routing
 -  Twig templating
+-  Tailwind support with vite
 -  Clean layout with partials
 -  Custom 404 & 500 error pages
 -  No session/authentication overhead
 -  Fast and easy to clone for new websites
 -  A `slim` cli command for ease in creating or removing pages and serving the site
 
-## 🛠 Slim CLI
+## Getting Started
 
-Easily scaffold pages, partials, or run the local server using the built-in CLI tool:
+### Prerequisites
+- PHP 8.0+
+- Composer
+- Node.js 16+
+- SQLite (for blog functionality)
 
+### Installation
+
+1. Clone the repository:
 ```bash
-# Create a new page (e.g., /about)
-php slim make:page about
+git clone https://github.com/wanjaswilly/slim-simple-site-skeleton.git ./company-site
+cd company-site
+```
 
-# Remove a page
-php slim remove:page about
+2. Install dependencies:
+```bash
+composer install
+npm install && npm run build
+```
 
-# Create a new Twig partial (e.g., footer.twig in /partials)
-php slim make:partial footer
+3. Configure environment:
+```bash
+cp .env.example .env
+# Edit .env with your settings
+```
+4. Configure css & js:
 
-# Start the development server at http://localhost:8000
+Check the generated files in `public/build` and update `templates/layout.twig`
+
+### Development
+```bash
 php slim serve
-````
-
-
+```
+Visit `http://localhost:8000`
 
 ---
 
@@ -48,65 +66,57 @@ php slim serve
 ```
 
 company-site/
-├── public/
-│   └── index.php          # Entry point
-├── templates/
-│   ├── layout.twig        # Base layout
-│   ├── partials/
-│   │   ├── header.twig
-│   │   └── footer.twig
-│   ├── pages/
-│   │   ├── home.twig
-│   │   ├── about.twig
-│   │   └── ...
-│   └── errors/
-│       ├── 404.twig
-│       └── 500.twig
-├── routes/
-│   └── web.php            # Route definitions
-├── bootstrap.php          # App + middleware setup
-├── composer.json
-├── slim                   # a simple commandline interface
-└── .htaccess              # Optional (Apache friendly URLs)
-
+├── app/                  # Application core
+│   ├── Controllers       # Request handlers
+│   ├── Helpers           # Utilities (BlogGenerator, etc.)
+│   └── Middlewares       # HTTP middleware
+│   └── Models            # HTTP middleware
+├── config/               # Configuration files
+│   ├── app.php           # Main config
+│   └── projects.php      # Projects data
+├── database/             # Database migrations
+├── public/               # Web root
+│   ├── build/            # Compiled assets
+│   └── images/           # Site images
+├── resources/            # Frontend assets
+│   ├── css/              # Custom styles
+│   └── js/               # JavaScript
+├── routes/               # Route definitions
+│   └── web.php           # Main routes
+├── templates/            # Twig templates
+│   ├── layout.twig       # Base template
+│   ├── partials/         # Reusable components
+│   ├── pages/            # Page templates
+│   └── errors/           # Error pages
+├── .env.example          # Environment template
+├── composer.json         # PHP dependencies
+├── package.json          # JS dependencies
+└── slim                  # Custom CLI tool
 
 ````
 
 ---
 
-## Setup Instructions
 
-### 1. Clone This Skeleton
 
-```bash
-git clone https://github.com/wanjaswilly/slim-simple-site-skeleton.git
-cd slim-simple-site-skeleton
-````
+## 🛠 Slim CLI
 
-### 2. Install Dependencies
+Easily scaffold pages, partials, or run the local server using the built-in CLI tool.
 
-```bash
-composer install
-npm install
-```
 
-### 3. Start Development Server
+### Using the CLI Tool
 
-```bash
-php slim serve
-```
+| Command | Description |
+|---------|-------------|
+| `php slim make:page about` | Create new page |
+| `php slim remove:page about` | Remove page |
+| `php slim make:partial footer` | Create new partial |
+| `php slim make:controller controllerName` | Creates new controller with the name given |
+| `php slim make:model modelName` | Creates new model with the name given |
+| `php slim make:model modelName -m` | Creates new model with the name given and a migration for it |
+| `php slim migrate` | runs all pending migrations |
+| `php slim serve` | Start dev server |
 
-Now open [http://localhost:8000](http://localhost:8000) in your browser.
-
----
-
-## Adding New Pages
-
-To create a page and define its route in `routes/web.php` you call the slim command:
-
-```php
- php slim make:page yourpagename
-```
 
 ---
 
