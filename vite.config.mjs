@@ -14,7 +14,7 @@ export default defineConfig({
         app: './resources/js/app.js',
       },
       output: {
-        assetFileNames: 'assets/[name].[hash][extname]',
+        assetFileNames: 'assets/[name][extname]',
       },
     },
   },
