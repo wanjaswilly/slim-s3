@@ -253,6 +253,145 @@ PHP
         passthru('php -S localhost:8000 -t public');
         break;
 
+    case 'make:factory':
+        $name = $argv[2] ?? null;
+        if (!$name) exit("Factory name required.\n");
+
+        ensurePackageInstalled('Faker\Factory', 'composer require fakerphp/faker');
+
+        $modelName   = ucfirst($name);
+        $modelClass  = "App\\Models\\$modelName";
+
+        // Check if model exists
+        if (!class_exists($modelClass)) {
+            exit("Model '$modelClass' not found. Create the model first using make:model.\n");
+        }
+
+        $className   = "{$modelName}Factory";
+        $factoryPath = __DIR__ . "/database/factories/{$className}.php";
+
+        // Ensure factories directory exists
+        if (!is_dir(dirname($factoryPath))) {
+            mkdir(dirname($factoryPath), 0777, true);
+        }
+
+        if (file_exists($factoryPath)) {
+            echo "Factory '$className' already exists.\n";
+            break;
+        }
+
+        // Generate factory file
+        $factoryStub = <<<PHP
+<?php
+
+namespace Database\Factories;
+
+use Faker\Factory as Faker;
+
+class {$className}
+{
+    public static function make(): array
+    {
+        \$faker = Faker::create();
+
+        return [
+            // TODO: adjust fields to match your model
+            'name' => \$faker->name,
+            'email' => \$faker->unique()->safeEmail,
+            'password' => password_hash('password', PASSWORD_DEFAULT),
+            'role' => 'user',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+        ];
+    }
+}
+PHP;
+
+        file_put_contents($factoryPath, $factoryStub);
+        echo "Factory '$className' created in database/factories/.\n";
+
+        // Ensure seeders.php exists
+        $seederFile = __DIR__ . '/database/seeders.php';
+        if (!file_exists($seederFile)) {
+            file_put_contents($seederFile, "<?php\n\nreturn [];\n");
+        }
+
+        // Load seeders
+        $seeders = require $seederFile;
+
+        // Add model entry if missing
+        if (!isset($seeders[$modelName])) {
+            $seeders[$modelName] = [
+                'model' => $modelClass,
+                'class' => "Database\\Factories\\$className",
+                'file'  => $factoryPath,
+            ];
+
+            // Rewrite seeders.php with updated array
+            $export = var_export($seeders, true);
+            file_put_contents($seederFile, "<?php\n\nreturn $export;\n");
+            echo "Seeder entry for '$modelName' added to database/seeders.php.\n";
+        } else {
+            echo "Seeder entry for '$modelName' already exists.\n";
+        }
+
+        break;
+
+
+    case 'seed':
+        $modelName = ucfirst($argv[2] ?? null);
+        $count     = isset($argv[3]) ? (int)$argv[3] : 1;
+
+        if (!$modelName) {
+            exit("Usage: php slim seed <Model> [count]\n");
+        }
+
+
+
+        // Bootstrap Eloquent
+        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+        $dotenv->safeLoad();
+        $dbConfig = require __DIR__ . '/config/database.php';
+        $capsule = new \Illuminate\Database\Capsule\Manager();
+        $capsule->addConnection($dbConfig['connections'][$dbConfig['default']]);
+        $capsule->setAsGlobal();
+        $capsule->bootEloquent();
+
+        $seedersFile = __DIR__ . '/database/seeders.php';
+        if (!file_exists($seedersFile)) {
+            exit("No seeders.php file found.\n");
+        }
+
+        $seeders = require $seedersFile;
+
+        if (!isset($seeders[$modelName])) {
+            exit("No seeder registered for model '$modelName'.\n");
+        }
+
+        $seeder = $seeders[$modelName];
+
+        // Require factory file
+        require_once $seeder['file'];
+
+        // Check classes
+        if (!class_exists($seeder['class'])) {
+            exit("Factory class {$seeder['class']} not found.\n");
+        }
+
+        if (!class_exists($seeder['model'])) {
+            exit("Model class {$seeder['model']} not found.\n");
+        }
+
+        // Seed
+        for ($i = 0; $i < $count; $i++) {
+            $data = $seeder['class']::make();
+            $seeder['model']::create($data);
+        }
+
+        echo "Seeded {$count} {$modelName} record(s).\n";
+        break;
+
+
     case 'migrate':
         echo " Running all migrations...\n";
 
