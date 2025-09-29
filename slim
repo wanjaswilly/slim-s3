@@ -475,16 +475,22 @@ PHP;
 
     default:
         echo <<<EOL
+
 Slim Site CLI
 -------------------------
 Usage:
-  make:page {name}       Create a new route and Twig page
-  remove:page {name}     Delete route and Twig file
-  make:partial {name}    Create a Twig partial in templates/partials
-  make:controller {name} Create a controller class in app/Controllers
-  make:model {name}      Create a model class in app/Models
-  make:migration {name}  Create a migration file in database/migrations
-  serve                  Start local dev server (localhost:8000)
+  php slim make:page <Name>          Create a new route + Twig page
+  php slim remove:page <Name>        Remove a page + its route
+
+  php slim make:partial <Name>       Create a Twig partial
+  php slim make:controller <Name>    Create a controller class
+  php slim make:model <Name> [-m]    Create a model (optionally with migration)
+  php slim make:migration <Name>     Create a migration file
+  php slim make:factory <Name>       Create a factory for a model
+
+  php slim migrate                   Run all pending migrations
+  php slim seed <Model> [--count=n]  Seed fake data for a model
+  php slim serve                     Start local dev server
 
 EOL;
         break;
