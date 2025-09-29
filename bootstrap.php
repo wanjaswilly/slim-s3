@@ -68,7 +68,10 @@ $errorMiddleware->setErrorHandler(HttpNotFoundException::class, function (
 ) use ($app) {
     $view = Twig::fromRequest($request);
     $response = new \Slim\Psr7\Response();
-    return $view->render($response->withStatus(404), 'errors/404.twig');
+    return $view->render($response->withStatus(404), 'errors/404.twig', [
+        'message' => $exception->getMessage(),
+        // 'message' => $exception
+    ]);
 });
 
 $errorMiddleware->setDefaultErrorHandler(function (
