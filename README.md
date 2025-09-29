@@ -145,8 +145,8 @@ The **`slim` CLI tool** makes it easy to scaffold pages, partials, models, migra
 
 ## Error Pages
 
-* `templates/errors/404.twig` → Not Found errors
-* `templates/errors/500.twig` → General server errors
+* `templates/errors/404.twig` -> Not Found errors
+* `templates/errors/500.twig` -> General server errors
 
 These are rendered automatically via middleware defined in `bootstrap.php`.
 
