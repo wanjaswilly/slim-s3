@@ -8,15 +8,18 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 return function (App $app) {
     // Static core routes
-    $app->get('/', function (Request $request, Response $response) {
-        $view = Twig::fromRequest($request);
-        return $view->render($response, 'pages/home.twig');
-    });
+    $pages = [
+        '/'          => 'home',
+        '/developer' => 'developer',
+        '/support'   => 'support',
+    ];
 
-    $app->get('/dev', function (Request $request, Response $response) {
-        $view = Twig::fromRequest($request);
-        return $view->render($response, 'pages/developer.twig');
-    });
+    foreach ($pages as $route => $template) {
+        $app->get($route, function (Request $request, Response $response) use ($template) {
+            $view = Twig::fromRequest($request);
+            return $view->render($response, "pages/{$template}.twig");
+        });
+    }
 
     //  AUTO-GENERATED ROUTES - DO NOT REMOVE THIS LINE
     // $app->get('/example', fn($req, $res) => $this->get(Twig::class)->render($res, 'pages/example.twig'));

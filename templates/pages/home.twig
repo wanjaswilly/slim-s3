@@ -1,203 +1,135 @@
 {% extends "layout.twig" %}
 
-{% block title %}Sellers App - Digital Assistant for Kenya's Hustlers{% endblock %}
+{% block title %}Slim Simple Site Skeleton{% endblock %}
 
 {% block content %}
-<div class="min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
+<div class="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
     <!-- Hero Section -->
-    <section class="py-20 px-4">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h1 class="text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-                        Your Digital Assistant for 
-                        <span class="text-green-600">Kenya's Hustlers</span>
-                    </h1>
-                    <p class="text-xl text-gray-600 mb-8 leading-relaxed">
-                        Combine stock management, social media integration, and M-PESA verification 
-                        into one affordable platform designed for Kenyan business culture.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <button class="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition duration-300">
-                            Start Free Trial
-                        </button>
-                        <button class="border-2 border-green-600 text-green-600 hover:bg-green-50 px-8 py-4 rounded-lg font-semibold text-lg transition duration-300">
-                            Watch Demo
-                        </button>
-                    </div>
-                </div>
-                <div class="relative">
-                    <!-- Placeholder for app screenshot/illustration -->
-                    <div class="bg-white rounded-2xl shadow-2xl p-8 transform rotate-2 hover:rotate-0 transition duration-300">
-                        <div class="bg-gray-200 h-80 rounded-lg flex items-center justify-center">
-                            <span class="text-gray-500">App Preview Coming Soon</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section class="text-center mb-16">
+        <div class="inline-flex items-center justify-center mb-6 p-3 bg-blue-100 dark:bg-blue-900 rounded-full">
+            <svg class="w-8 h-8 text-blue-600 dark:text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
         </div>
+        <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-6">Slim Simple Site Skeleton</h1>
+        <p class="text-xl text-gray-600 dark:text-gray-100 max-w-2xl mx-auto">
+            A lightweight foundation for building modern, performant websites
+        </p>
     </section>
 
-    <!-- Problem Section -->
-    <section class="py-16 bg-white px-4">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">
-                Challenges Facing Kenyan Sellers
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="text-center p-6">
-                    <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span class="text-red-600 text-2xl">📱</span>
-                    </div>
-                    <h3 class="font-semibold text-lg mb-2">Scattered Marketing</h3>
-                    <p class="text-gray-600">Posting the same product individually on Facebook, Instagram, TikTok, and WhatsApp takes time</p>
-                </div>
-                <div class="text-center p-6">
-                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span class="text-blue-600 text-2xl">💬</span>
-                    </div>
-                    <h3 class="font-semibold text-lg mb-2">Communication Overload</h3>
-                    <p class="text-gray-600">Messages and comments spread across different apps lead to missed opportunities</p>
-                </div>
-                <div class="text-center p-6">
-                    <div class="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span class="text-yellow-600 text-2xl">📦</span>
-                    </div>
-                    <h3 class="font-semibold text-lg mb-2">Stock Management Gaps</h3>
-                    <p class="text-gray-600">No link between sales and inventory leads to overselling and disappointed customers</p>
-                </div>
-                <div class="text-center p-6">
-                    <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span class="text-purple-600 text-2xl">💰</span>
-                    </div>
-                    <h3 class="font-semibold text-lg mb-2">Payment Confusion</h3>
-                    <p class="text-gray-600">Manual M-PESA payment matching causes mistakes with multiple transactions</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Solutions Section -->
-    <section class="py-20 bg-gray-50 px-4">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-3xl font-bold text-center text-gray-900 mb-4">
-                How Sellers App Helps You
-            </h2>
-            <p class="text-xl text-center text-gray-600 mb-12 max-w-3xl mx-auto">
-                Designed specifically for informal to semi-formal sellers in Kenya
+    <!-- Main Content -->
+    <section class="prose prose-lg dark:prose-invert max-w-none">
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-8 mb-8 border border-gray-100 dark:border-gray-200">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">About This Project</h2>
+            <p class="text-gray-800 dark:text-white mb-6">
+                This is a lightweight Slim PHP starter template crafted for building simple, fast, and modern websites with ease. It's designed for use on company profiles, portfolios, and static sites — no authentication, no session handling, just clean pages and minimal setup.
             </p>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-                <div class="space-y-8">
-                    <div class="flex gap-4">
-                        <div class="bg-green-100 w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <span class="text-green-600 text-xl">🚀</span>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-lg mb-2">Simplify Selling</h3>
-                            <p class="text-gray-600">Upload products once, post across multiple social platforms instantly</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-4">
-                        <div class="bg-blue-100 w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <span class="text-blue-600 text-xl">📨</span>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-lg mb-2">Centralize Conversations</h3>
-                            <p class="text-gray-600">Bring customer inquiries from Facebook, Instagram, WhatsApp, and TikTok into one inbox</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-4">
-                        <div class="bg-purple-100 w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <span class="text-purple-600 text-xl">📊</span>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-lg mb-2">Manage Stock Effortlessly</h3>
-                            <p class="text-gray-600">Deduct inventory automatically when sales are made and payments confirmed</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="space-y-8">
-                    <div class="flex gap-4">
-                        <div class="bg-yellow-100 w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <span class="text-yellow-600 text-xl">🤖</span>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-lg mb-2">AI-Powered Replies</h3>
-                            <p class="text-gray-600">Automate responses to common questions about pricing, location, and delivery</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-4">
-                        <div class="bg-red-100 w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <span class="text-red-600 text-xl">💸</span>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-lg mb-2">M-PESA Verification</h3>
-                            <p class="text-gray-600">Integrate with M-PESA to confirm transactions before deducting stock</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-4">
-                        <div class="bg-indigo-100 w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <span class="text-indigo-600 text-xl">📈</span>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-lg mb-2">Business Insights</h3>
-                            <p class="text-gray-600">See what's selling, on which platform, and when to restock</p>
-                        </div>
-                    </div>
-                </div>
+            
+            <div class="my-6 p-4 bg-blue-50 dark:bg-blue-900/30 border-l-4 border-blue-500 rounded">
+                <p class="text-blue-800 dark:text-blue-200 font-medium">
+                    Perfect for: Company sites, Portfolios, Documentation, Marketing pages
+                </p>
             </div>
         </div>
-    </section>
 
-    <!-- Target Audience Section -->
-    <section class="py-20 bg-white px-4">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">
-                Perfect For Kenyan Businesses Like Yours
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-gray-50 rounded-xl p-6 text-center hover:shadow-lg transition duration-300">
-                    <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span class="text-blue-600 text-2xl">👗</span>
-                    </div>
-                    <h3 class="font-semibold text-lg mb-2">Clothing & Fashion</h3>
-                    <p class="text-gray-600">Gikomba, mitumba boutiques, online fashion stores</p>
-                </div>
-                <div class="bg-gray-50 rounded-xl p-6 text-center hover:shadow-lg transition duration-300">
-                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span class="text-green-600 text-2xl">🍎</span>
-                    </div>
-                    <h3 class="font-semibold text-lg mb-2">Food Vendors</h3>
-                    <p class="text-gray-600">Mama mboga, grocery kiosks, poultry & butchery stalls</p>
-                </div>
-                <div class="bg-gray-50 rounded-xl p-6 text-center hover:shadow-lg transition duration-300">
-                    <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span class="text-purple-600 text-2xl">📱</span>
-                    </div>
-                    <h3 class="font-semibold text-lg mb-2">Electronics Shops</h3>
-                    <p class="text-gray-600">Phones, chargers, small appliances and accessories</p>
-                </div>
+        <!-- Tech Stack -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 border border-gray-100 dark:border-gray-700">
+                <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-4 flex items-center">
+                    <svg class="w-5 h-5 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                    Built With
+                </h3>
+                <ul class="space-y-2">
+                    <li class="flex items-center">
+                        <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                        <span class="text-gray-800 dark:text-white">Slim PHP 4 (Routing)</span>
+                    </li>
+                    <li class="flex items-center">
+                        <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                        <span class="text-gray-800 dark:text-white">Twig (Templating)</span>
+                    </li>
+                    <li class="flex items-center">
+                        <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                        <span class="text-gray-800 dark:text-white">Tailwind CSS (Styling)</span>
+                    </li>
+                    <li class="flex items-center">
+                        <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                        <span class="text-gray-800 dark:text-white">PHP-DI (Dependency Injection)</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 border border-gray-100 dark:border-gray-700">
+                <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-4 flex items-center">
+                    <svg class="w-5 h-5 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+                    </svg>
+                    Features
+                </h3>
+                <ul class="space-y-2">
+                    <li class="flex items-center">
+                        <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                        <span class="text-gray-800 dark:text-white">Simple routing</span>
+                    </li>
+                    <li class="flex items-center">
+                        <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                        <span class="text-gray-800 dark:text-white">Ready-to-use Twig components</span>
+                    </li>
+                    <li class="flex items-center">
+                        <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                        <span class="text-gray-800 dark:text-white">Custom error pages</span>
+                    </li>
+                    <li class="flex items-center">
+                        <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                        <span class="text-gray-800 dark:text-white">Minimal dependencies</span>
+                    </li>
+                </ul>
             </div>
         </div>
-    </section>
 
-    <!-- CTA Section -->
-    <section class="py-20 bg-gradient-to-r from-green-600 to-blue-600 text-white px-4">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-4xl font-bold mb-6">Ready to Simplify Your Business?</h2>
-            <p class="text-xl mb-8 opacity-90">
-                Join thousands of Kenyan sellers who are growing their business with our digital assistant
+        <!-- CTA -->
+        <div class="text-center bg-gray-50 dark:bg-gray-800 rounded-xl p-8 border border-gray-200 dark:border-gray-700">
+            <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Ready to Get Started?</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
+                Clone the repository and start building your next project in minutes.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <button class="bg-white text-green-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg transition duration-300">
-                    Get Started Free
-                </button>
-                <button class="bg-transparent border-2 border-white hover:bg-white hover:text-green-600 px-8 py-4 rounded-lg font-semibold text-lg transition duration-300">
-                    Contact Sales
-                </button>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="https://github.com/wanjaswilly/slim-simple-site-skeleton" target="_blank" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-200">
+                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.167 6.839 9.49.5.09.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"></path>
+                    </svg>
+                    View on GitHub
+                </a>
+                <a href="https://github.com/wanjaswilly/slim-simple-site-skeleton/archive/refs/heads/main.zip" target="_blank" class="inline-flex items-center justify-center px-6 py-3 border border-gray-300 dark:border-gray-600 text-base font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors duration-200">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                    </svg>
+                    Use Template
+                </a>
             </div>
-            <p class="mt-4 text-sm opacity-80">No credit card required • Free 30-day trial • Swahili & English support</p>
+        </div>
+
+        <!-- Author Credit -->
+        <div class="mt-12 text-center">
+            <p class="text-gray-600 dark:text-gray-400">
+                Built and open-sourced by <a href="https://github.com/wanjaswilly" class="text-blue-600 dark:text-blue-400 hover:underline font-medium">Wilson Wanja</a>
+            </p>
+            <div class="mt-4 flex justify-center space-x-4">
+                <a href="https://x.com/wanjaswilly" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+                    <span class="sr-only">Twitter</span>
+                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+                    </svg>
+                </a>
+                <a href="https://github.com/wanjaswilly" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+                    <span class="sr-only">GitHub</span>
+                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.167 6.839 9.49.5.09.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd"></path>
+                    </svg>
+                </a>
+            </div>
         </div>
     </section>
 </div>
