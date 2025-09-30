@@ -1,4 +1,4 @@
-# Slim Simple Site Skeleton
+# Slim-s3(Slim Simple Site Skeleton)
 
 A lightweight, reusable **Slim 4 + Twig boilerplate** for static company or portfolio websites (4–7 pages).
 
