@@ -32,7 +32,7 @@ $capsule->addConnection($dbConfig['connections'][$dbConfig['default']]);
 $capsule->setAsGlobal();
 
 // Boot Eloquent
-$capsule->bootEloquent(); 
+$capsule->bootEloquent();
 
 /*
  * Stats tracking moved to middleware for proper $request context.
@@ -49,9 +49,14 @@ $twig->getEnvironment()->addFunction(new TwigFunction('asset', function ($path) 
     return '/' . ltrim($path, '/');
 }));
 
-foreach ([
-    'APP_URL', 'APP_NAME', 'ASSET_BASE', 'APP_ENVIRONMENT'
-] as $key) {
+foreach (
+    [
+        'APP_URL',
+        'APP_NAME',
+        'ASSET_BASE',
+        'APP_ENVIRONMENT'
+    ] as $key
+) {
     $twig->getEnvironment()->addGlobal($key, $_ENV[$key] ?? '');
 }
 
@@ -68,7 +73,11 @@ $errorMiddleware->setErrorHandler(HttpNotFoundException::class, function (
 ) use ($app) {
     $view = Twig::fromRequest($request);
     $response = new \Slim\Psr7\Response();
-    return $view->render($response->withStatus(404), 'errors/404.twig');
+
+    // In production, show generic message
+    $message = $_ENV['APP_ENVIRONMENT'] === 'DEV' ? $exception : $exception->getMessage();
+
+    return $view->render($response->withStatus(404), 'errors/404.twig', ['message' => $message]);
 });
 
 $errorMiddleware->setDefaultErrorHandler(function (
@@ -78,10 +87,10 @@ $errorMiddleware->setDefaultErrorHandler(function (
 ) use ($twig): Response {
     $response = new \Slim\Psr7\Response();
 
-    return $twig->render($response, 'errors/500.twig', [
-        'message' => $exception->getMessage(),
-        // 'message' => $exception
-    ])->withStatus(500);
+    // In production, show generic message
+    $message = $_ENV['APP_ENVIRONMENT'] === 'DEV' ? $exception : $exception->getMessage();
+
+    return $twig->render($response, 'errors/500.twig', ['message' => $message])->withStatus(500);
 });
 
 
