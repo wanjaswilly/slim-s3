@@ -38,16 +38,8 @@
     <meta name="twitter:image" content="{{ app_url|default('https://example.com') }}/assets/twitter-card.jpg" />
 
     <!-- Tailwind CSS -->
-    {% if APP_ENVIRONMENT == 'DEV' %}
-      {# Development - use Vite server #}
-      <script type="module" src="http://localhost:8000/@vite/client"></script>
-      <script type="module" src="http://localhost:8000/resources/js/app.js"></script>
-      <link rel="stylesheet" href="http://localhost:8000/resources/css/app.css" />
-    {% else %}
-      {# Production - use built assets #}
       <link rel="stylesheet" href="{{ asset('/build/assets/app.css') }}" />
       <script type="module" src="{{ asset('/build/assets/app-DPY58IMw.js') }}"></script>
-    {% endif %}
 
     <!-- Favicon -->
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
