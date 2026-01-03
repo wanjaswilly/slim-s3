@@ -1,5 +1,6 @@
 <?php
 
+use App\Controllers\HomeController;
 use App\Models\SiteStat;
 use Slim\App;
 use Slim\Views\Twig;
@@ -8,30 +9,27 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 return function (App $app) {
     // Static core routes
-    $pages = [
-        '/'          => 'home',
-        '/developer' => 'developer',
-        '/support'   => 'support',
-    ];
-
-    foreach ($pages as $route => $template) {
-        $app->get($route, function (Request $request, Response $response) use ($template) {
-            $view = Twig::fromRequest($request);
-            return $view->render($response, "pages/{$template}.twig");
-        });
-    }
-
-    //  AUTO-GENERATED ROUTES - DO NOT REMOVE THIS LINE
-    // $app->get('/example', fn($req, $res) => $this->get(Twig::class)->render($res, 'pages/example.twig'));
-
     // Test 500 error
     $app->get('/test-500', function () {
         throw new \Exception("Intentional test error");
     });
 
-    $app->get('/stats', function ($request, $response) {
-        $view = \Slim\Views\Twig::fromRequest($request);
-        $stats = SiteStat::orderBy('visited_at', 'desc')->limit(100)->get();
-        return $view->render($response, 'pages/stats.twig', ['stats' => $stats]);
-    });
+    # Route for 'about'
+    $app->get('/about', [HomeController::class, 'about'])->setName('about');
+
+    # Route for 'home'
+    $app->get('/', [HomeController::class, 'home'])->setName('home');
+
+    # Route for 'contact'
+    $app->get('/contact', [HomeController::class, 'contact'])->setName('contact');
+
+    # Route for 'terms'
+    $app->get('/terms', [HomeController::class, 'terms'])->setName('terms');
+
+    # Route for 'privacy'
+    $app->get('/privacy', [HomeController::class, 'privacy'])->setName('privacy');
+
+
+    # Route for 'stats'
+    $app->get('/stats', [HomeController::class, 'stats'])->setName('stats');
 };
