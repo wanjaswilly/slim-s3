@@ -54,7 +54,7 @@ class HomeController
     {
         $view = Twig::fromRequest($request);
         return $view->render($response, 'pages/stats.twig',[
-            'stats' => SiteStat::get()
+            'stats' => SiteStat::latest()->get()
         ]);
     }
 
