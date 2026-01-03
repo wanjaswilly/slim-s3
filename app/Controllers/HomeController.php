@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\SiteStat;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\Twig;
@@ -52,7 +53,9 @@ class HomeController
     public function stats(Request $request, Response $response): Response
     {
         $view = Twig::fromRequest($request);
-        return $view->render($response, 'pages/stats.twig');
+        return $view->render($response, 'pages/stats.twig',[
+            'stats' => SiteStat::get()
+        ]);
     }
 
 }
