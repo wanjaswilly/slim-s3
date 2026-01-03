@@ -9,12 +9,6 @@ use Slim\Views\Twig;
 
 class HomeController
 {
-    public function index(Request $request, Response $response): Response
-    {
-        $response->getBody()->write("Hello from HomeController");
-        return $response;
-    }
-
     public function about(Request $request, Response $response): Response
     {
         $view = Twig::fromRequest($request);
