@@ -28,6 +28,12 @@ return function (App $app) {
 
     # Route for 'privacy'
     $app->get('/privacy', [HomeController::class, 'privacy'])->setName('privacy');
+    
+    # Route for 'developer'
+    $app->get('/developer', [HomeController::class, 'developer'])->setName('developer');
+
+    # Route for 'support'
+    $app->get('/support', [HomeController::class, 'support'])->setName('support');
 
 
     # Route for 'stats'
