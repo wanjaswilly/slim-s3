@@ -43,6 +43,20 @@ class HomeController
         return $view->render($response, 'pages/privacy.twig');
     }
 
+    
+
+    public function developer(Request $request, Response $response): Response
+    {
+        $view = Twig::fromRequest($request);
+        return $view->render($response, 'pages/developer.twig');
+    }
+
+
+    public function support(Request $request, Response $response): Response
+    {
+        $view = Twig::fromRequest($request);
+        return $view->render($response, 'pages/support.twig');
+    }
 
     public function stats(Request $request, Response $response): Response
     {
