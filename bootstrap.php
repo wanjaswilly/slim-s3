@@ -17,12 +17,13 @@ require __DIR__ . '/vendor/autoload.php';
 session_start();
 
 $app = AppFactory::create();
-// Load configuration files
-$config = require __DIR__ . '/config/app.php';
-$dbConfig = require __DIR__ . '/config/database.php';
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
+
+// Load configuration files
+$config = require __DIR__ . '/config/app.php';
+$dbConfig = require __DIR__ . '/config/database.php';
 
 // Initialize Eloquent ORM
 $capsule = new Capsule;
